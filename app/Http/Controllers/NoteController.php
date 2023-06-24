@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreNoteRequest;
 use App\Http\Requests\UpdateNoteRequest;
+use App\Http\Resources\NoteResource;
 use App\Models\Note;
+use App\Utils\ResponseJson;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
@@ -25,7 +27,10 @@ class NoteController extends Controller
             ->paginate($request?->limit ?? 10)
             ->appends($request->query())
             ;
-        return $notes;
+
+        return ResponseJson::success(
+            data: NoteResource::collection($notes)
+        );
     }
 
     /**
@@ -40,7 +45,9 @@ class NoteController extends Controller
             )
         ]);
 
-        return $note;
+        return ResponseJson::success(
+            data: new NoteResource($note),
+        );
     }
 
     /**
@@ -48,7 +55,9 @@ class NoteController extends Controller
      */
     public function show(Note $note)
     {
-        return $note;
+        return ResponseJson::success(
+            data: new NoteResource($note),
+        );
     }
 
     /**
@@ -63,7 +72,12 @@ class NoteController extends Controller
             )
         ]);
 
-        return $note->refresh();
+        // udpate note variable to get newest
+        $note->refresh();
+
+        return ResponseJson::success(
+            data: new NoteResource($note),
+        );
     }
 
     /**
@@ -73,6 +87,8 @@ class NoteController extends Controller
     {
         $note->delete();
 
-        return $note;
+        return ResponseJson::success(
+            data: new NoteResource($note),
+        );
     }
 }
