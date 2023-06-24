@@ -19,7 +19,7 @@ class NoteController extends Controller
     {
         $notes = Note::query()
             ->when($request->search, fn($q) => $q->where(function($query) use ($request) {
-                $request->where('title', 'LIKE', '%'.$request->search.'%')
+                $query->where('title', 'LIKE', '%'.$request->search.'%')
                     ->orWhere('description', 'LIKE', '%'.$request->search.'%')
                     ;
             }))
