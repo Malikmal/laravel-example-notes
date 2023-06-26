@@ -1,8 +1,8 @@
 # Laravel Notes APi 
 
 Look at the [Laravel documentation](https://laravel.com) to learn more.
-## Screenshot
-<img width="505" alt="image" src="https://github.com/Malikmal/laravel-example-notes/assets/36214726/014b787c-ac14-49d3-ba7a-14ea157444f0">
+## Demo
+https://jam.dev/c/b6a4f259-f6f6-48a8-8ad0-6adbb54ef83b
 
 ## Guide Setup
 
