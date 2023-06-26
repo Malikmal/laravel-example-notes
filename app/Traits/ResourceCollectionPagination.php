@@ -7,8 +7,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 trait ResourceCollectionPagination
 {
     /**
-     * overriding static function collection inside 
-     * Illuminate\Http\Resources\Json\JsonResource 
+     * overriding static function collection inside
+     * Illuminate\Http\Resources\Json\JsonResource
      * that we need to convert pagination to our format
      *
      * @param [type] $resource
@@ -16,7 +16,7 @@ trait ResourceCollectionPagination
      * @return void
      */
     public static function collection($resource)
-    {        
+    {
         $resource = parent::collection($resource);
         // dd($resource->resource);
         if ($resource->resource instanceof LengthAwarePaginator) {
@@ -26,9 +26,9 @@ trait ResourceCollectionPagination
             $result['pagination']['last'] = $resource->lastPage();
             $result['pagination']['next'] = (string) $resource->nextPageUrl();
             $result['pagination']['prev'] = (string) $resource->previousPageUrl();
-            $result['data'] = $resource->all();
+            $result['data'] = parent::collection($resource->all());
         } else {
-            $result = $resource;
+            $result = parent::collection($resource);
         }
         return $result;
     }
