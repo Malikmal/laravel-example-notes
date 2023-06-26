@@ -3,5 +3,6 @@
 
 return [
     'success' => 'Success',
-    'Failed' => 'Failed',
+    'failed' => 'Failed',
+    'error' => 'Oops, Sorry our server got errro. we fill fix it',
 ];

@@ -15,7 +15,7 @@ class ResponseJson {
             'message' => $message ??  __('response.success'),
             'code' => $code,
             'data' => $data,
-        ], $code);
+        ], $code ?: 200);
     }
 
     public static function failed(
@@ -28,6 +28,6 @@ class ResponseJson {
             'message' => $message ?? __('response.failed'),
             'code' => $code,
             'data' => $data,
-        ], $code);
+        ], $code ?: 400);
     }
 }
